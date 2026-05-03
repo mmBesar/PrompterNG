@@ -1,0 +1,47 @@
+{
+  "name": "prompterng",
+  "version": "1.0.0",
+  "description": "Browser-based Prompter with Remote Control — Arabic & English support, Markdown rendering, offline-first",
+  "homepage": "https://github.com/mmBesar/PrompterNG",
+  "license": "MIT",
+  "keywords": [
+    "prompterng",
+    "prompter",
+    "arabic",
+    "markdown",
+    "remote-control",
+    "self-hosted"
+  ],
+  "contributors": [
+    {
+      "name": "Mohammed Besar",
+      "url": "https://github.com/mmBesar"
+    }
+  ],
+  "credits": {
+    "based-on": "TelePrompter v1.2.2 by Peter Schmalfeldt",
+    "original-repo": "https://github.com/manifestinteractive/teleprompter"
+  },
+  "engines": {
+    "node": ">= 20.0.0",
+    "npm": ">= 10.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmbesar/prompterng.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mmbesar/prompterng/issues"
+  },
+  "scripts": {
+    "client": "http-server --cors -p 8080",
+    "server": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

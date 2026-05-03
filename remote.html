@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ar-001">
+  <head>
+    <meta charset="utf-8">
+    <title>PrompterNG Remote</title>
+
+    <!-- Mobile Specific Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Remote">
+    <meta name="application-name" content="Remote">
+    <meta name="robots" content="noindex,nofollow">
+
+    <!-- Bundled Fonts -->
+    <style>
+      @font-face {
+        font-family: 'Noto Sans Arabic';
+        font-style: normal;
+        font-display: swap;
+        font-weight: 400;
+        src: url('assets/font/noto-sans-arabic-arabic-400-normal.woff2') format('woff2');
+        unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+      }
+      @font-face {
+        font-family: 'Noto Sans Arabic';
+        font-style: normal;
+        font-display: swap;
+        font-weight: 700;
+        src: url('assets/font/noto-sans-arabic-arabic-700-normal.woff2') format('woff2');
+        unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+      }
+      @font-face {
+        font-family: 'Noto Sans Arabic';
+        font-style: normal;
+        font-display: swap;
+        font-weight: 400;
+        src: url('assets/font/noto-sans-arabic-latin-400-normal.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                       U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                       U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: 'Noto Sans Arabic';
+        font-style: normal;
+        font-display: swap;
+        font-weight: 700;
+        src: url('assets/font/noto-sans-arabic-latin-700-normal.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                       U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                       U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/remote.css">
+
+    <link rel="preload" href="assets/font/noto-sans-arabic-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/font/fontawesome-webfont.woff?v=3.2.1" as="font" type="font/woff2" crossorigin>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="192x192" href="assets/img/icon-192x192.png" />
+  </head>
+  <body>
+    <div id="remote-setup" class="remote-wrapper">
+      <div>
+        <p><input type="text" class="remote-id" name="remote-id" maxlength="6" placeholder="ABC123" onfocus="this.placeholder=''" onblur="this.placeholder='ABC123'" required /></p>
+        <p>Enter Remote ID to Connect</p>
+      </div>
+
+      <div class="footer text-center">
+        TELEPROMPTER
+      </div>
+    </div>
+
+    <div id="remote-control" class="remote-wrapper">
+      <div class="header">
+        <button class="button small icon-eye-close dim-controls" id="button-dim" aria-label="Dim While Reading" title="Dim While Reading"></button>
+        <button class="button small icon-undo reset" id="button-reset" aria-label="Reset" title="Reset"></button>
+        <button class="button small icon-text-width flip-x" id="button-flip-x" aria-label="Flip Text Horizontally" title="Flip Text Horizontally"></button>
+        <button class="button small icon-text-height flip-y" id="button-flip-y" aria-label="Flip Text Vertically" title="Flip Text Vertically"></button>
+        <button class="button small icon-off power" id="button-power" aria-label="Disconnect Remote" title="Disconnect Remote"></button>
+      </div>
+
+      <div class="clock-wrapper">
+        <i class="icon icon-bullhorn"></i>&nbsp;
+        <span class="clock" id="current-time">00:00:00</span>
+      </div>
+
+      <div class="remote">
+        <div class="text-center">
+          <button class="button icon-chevron-up up" id="button-up" aria-label="Scroll Up" title="Scroll Up"></button>
+        </div>
+
+        <div class="text-center">
+          <button class="button icon-minus minus" id="button-slower" aria-label="Slower" title="Slower"></button>
+          <button class="button icon-play play" id="button-play" aria-label="Play / Pause" title="Play / Pause"></button>
+          <button class="button icon-plus plus" id="button-faster" aria-label="Faster" title="Faster"></button>
+        </div>
+
+        <div class="text-center">
+          <button class="button icon-chevron-down down" id="button-down" aria-label="Scroll Down" title="Scroll Down"></button>
+        </div>
+      </div>
+
+      <button id="toggle-text-sender">✏️ Edit Script</button>
+
+      <div id="text-sender">
+        <textarea id="remote-text" dir="auto" placeholder="Type or paste your script here..."></textarea>
+        <button id="send-text">Send</button>
+        <button id="cancel-text">Cancel</button>
+      </div>
+
+      <div class="quick-slider">
+        <select id="slider-select">
+          <option value="font">Font</option>
+          <option value="scroll">Scroll</option>
+          <option value="speed" selected>Speed</option>
+          <option value="width">Width</option>
+        </select>
+        <span id="slider-value">50</span>
+        <input type="range" min="0" max="50" value="50" class="slider" id="slider">
+      </div>
+
+      <div class="footer text-center" id="remote-id"></div>
+    </div>
+
+    <!-- Socket.io loaded relative to current host — works behind any reverse proxy -->
+    <script>
+      (function(d, s, id) {
+        var js, tjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = '/socket.io/socket.io.js';
+        tjs.parentNode.insertBefore(js, tjs);
+      }(document, 'script', 'prompterng-socket'));
+    </script>
+
+    <script src="assets/js/remote.js"></script>
+    <script>
+      window.onload = function() {
+        PrompterNGRemote.init();
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+services:
+  prompterng:
+    image: ghcr.io/mmbesar/prompterng:latest
+    container_name: prompterng
+    command: server
+    ports:
+      - '3000:3000'
+    restart: unless-stopped
+
+  prompterng-remote:
+    image: ghcr.io/mmbesar/prompterng:latest
+    container_name: prompterng-remote
+    command: client
+    ports:
+      - '8080:8080'
+    restart: unless-stopped
