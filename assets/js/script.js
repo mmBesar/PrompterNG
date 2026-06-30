@@ -878,8 +878,9 @@ var defaultConfig = {
     }
     // Scroll Up manually
     else if (evt.keyCode == up) {
+      var lineHeight = parseInt($elm.teleprompter.css('line-height'));
       $elm.article.stop().animate({
-        scrollTop: '-=' + Math.ceil(font_size * 1.5) + 'px'
+        scrollTop: '-=' + lineHeight + 'px'
       }, 200, 'swing', function() {
         $elm.article.clearQueue();
       });
@@ -889,8 +890,9 @@ var defaultConfig = {
     }
     // Scroll Down manually
     else if (evt.keyCode == down) {
+      var lineHeight = parseInt($elm.teleprompter.css('line-height'));
       $elm.article.stop().animate({
-        scrollTop: '+=' + Math.ceil(font_size * 1.5) + 'px'
+        scrollTop: '+=' + lineHeight + 'px'
       }, 200, 'swing', function() {
         $elm.article.clearQueue();
       });
