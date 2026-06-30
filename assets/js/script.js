@@ -879,7 +879,7 @@ var defaultConfig = {
     // Scroll Up manually
     else if (evt.keyCode == up) {
       $elm.article.stop().animate({
-        scrollTop: '-=' + 150 + 'px'
+        scrollTop: '-=' + Math.ceil(font_size * 1.5) + 'px'
       }, 200, 'swing', function() {
         $elm.article.clearQueue();
       });
@@ -890,7 +890,7 @@ var defaultConfig = {
     // Scroll Down manually
     else if (evt.keyCode == down) {
       $elm.article.stop().animate({
-        scrollTop: '+=' + 150 + 'px'
+        scrollTop: '+=' + Math.ceil(font_size * 1.5) + 'px'
       }, 200, 'swing', function() {
         $elm.article.clearQueue();
       });
