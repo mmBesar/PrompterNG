@@ -381,7 +381,7 @@
 
       // Up — Scroll up
       if (evt.keyCode === up) {
-        config.pageScrollPercent = Math.max(0, config.pageScrollPercent - 5);
+        config.pageScrollPercent = Math.max(0, config.pageScrollPercent - 1);
         if (socket && remote) {
           socket.emit('sendRemoteControl', 'updateConfig', config);
         }
@@ -392,7 +392,7 @@
 
       // Down — Scroll down
       if (evt.keyCode === down) {
-        config.pageScrollPercent = Math.min(100, config.pageScrollPercent + 5);
+        config.pageScrollPercent = Math.min(100, config.pageScrollPercent + 1);
         if (socket && remote) {
           socket.emit('sendRemoteControl', 'updateConfig', config);
         }

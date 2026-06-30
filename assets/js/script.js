@@ -880,7 +880,7 @@ var defaultConfig = {
     else if (evt.keyCode == up) {
       var lineHeight = parseInt($elm.teleprompter.css('line-height'));
       $elm.article.stop().animate({
-        scrollTop: '-=' + lineHeight + 'px'
+        scrollTop: '-=' + Math.round(lineHeight * 0.6) + 'px'
       }, 200, 'swing', function() {
         $elm.article.clearQueue();
       });
@@ -892,7 +892,7 @@ var defaultConfig = {
     else if (evt.keyCode == down) {
       var lineHeight = parseInt($elm.teleprompter.css('line-height'));
       $elm.article.stop().animate({
-        scrollTop: '+=' + lineHeight + 'px'
+        scrollTop: '+=' + Math.round(lineHeight * 0.6) + 'px'
       }, 200, 'swing', function() {
         $elm.article.clearQueue();
       });
