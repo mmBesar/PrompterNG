@@ -32,12 +32,15 @@ jobs:
         include:
           - arch:     amd64
             runner:   ubuntu-latest
+            base_image: node:20-alpine
 
           - arch:     arm64
             runner:   ubuntu-24.04-arm
+            base_image: node:20-alpine
 
           - arch:     riscv64
             runner:   ubuntu-24.04-riscv
+            base_image: gounthar/node-riscv64:22.22.0-trixie-slim
 
     runs-on: ${{ matrix.runner }}
 
@@ -84,6 +87,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.arch_tags.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            BASE_IMAGE=${{ matrix.base_image }}
           cache-from: type=gha,scope=${{ matrix.arch }}
           cache-to:   type=gha,mode=max,scope=${{ matrix.arch }}
 
